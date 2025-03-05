@@ -21,6 +21,8 @@
 
 ---
 
+### **구현 기능**
+
 - Nginx와 ingress를 활용한 기본 구조 구성 및 https 인증서 설정
 - MongoDB의 고가용성 확보를 위한 Replica Set 구성 및 StatefulSet 활용
 - EFK Stack(Elasticsearch, Fluentbit, Kibana)을 통한 로그 수집 및 시각화
