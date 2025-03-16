@@ -31,6 +31,18 @@
 
 ## **기술 스택:**
 
+<img width="1074" alt="Image" src="https://github.com/user-attachments/assets/89da90a9-fc71-49aa-8381-c21aaa50a0b5" />
+
 - **Backend**: Django
 - **Frontend**: NextJS + NextUI
 - **Database**: MongoDB (Replica Set 구성)
+
+## **📌 구현 기능 상세**
+
+### 1. MongoDB DataBase 이중화
+
+<img width="376" alt="Image" src="https://github.com/user-attachments/assets/f82475ab-0efb-4cb5-85d5-4c709bf96490" />
+
+
+
+
