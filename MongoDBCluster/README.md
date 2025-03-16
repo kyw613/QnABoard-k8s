@@ -6,12 +6,18 @@
 - **Backend**: Django
 - **Database**: MongoDB
 
+
+
+
 ## **💡 문제점**
 
 - `Frontend`와 `Backend`는 **Kubernetes Deployment를 활용**하여 `ReplicaSet`으로 배포되므로, Pod 장애 발생 시 자동 복구 가능
 - 하지만 **Database는 단일 인스턴스로 운영할 경우, 장애 발생 시 전체 서비스 중단 위험**
     - 초기 테스트에서 **100명 이상 동시 접속 시 서비스가 다운되는 현상**이 반복
 - 데이터베이스의 고가용성을 확보하지 않으면 **운영 중 데이터 유실 및 서비스 다운 가능성 존재**
+
+
+
 
 ## 🔍 구성 시 중요 고려 사항
 
@@ -27,6 +33,9 @@
     - 단순한 DB 인스턴스 증설이 아닌, **장기적인 확장성을 고려한 구조 설계**
     - 클러스터링 및 읽기/쓰기 분리를 통해 **추가 인프라 비용 최소화**
 
+
+
+
 ### **✅ 해결 방안**
 
 **StatefulSet과 MongoDB의 ReplicaSet을 활용하여 DB 클러스터를 구성, 데이터베이스의 고가용성을 확보하였습니다.**
@@ -37,7 +46,7 @@
 
 ### [ Architecture ]
 
-## **❖ StatefulSet 기반 MongoDB ReplicaSet 구성**
+### **❖ StatefulSet 기반 MongoDB ReplicaSet 구성**
 
 ## **📌 PV (Persistent Volume) 설정**
 
@@ -94,7 +103,7 @@ spec:
 
 위 설정에서는 **Primary DB를 특정 노드(`k8s-node1`)에 배치**하고, **Secondary DB는 랜덤으로 배포**되도록 구성했습니다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/b3392b0e-1046-4adf-8c60-2ca3c16ef363/64fee16d-569f-4b68-a355-a311699766f1/Untitled.png)
+![Image](https://github.com/user-attachments/assets/8159f4b0-6a1c-4f92-85ff-67838b9d2328)
 
 
 
@@ -211,7 +220,8 @@ curl mongodb-sec2-svc.default.svc.cluster.local:27017
 
 ```
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/b3392b0e-1046-4adf-8c60-2ca3c16ef363/d0c42ce8-9ce4-4845-857c-1238a26b475c/Untitled.png)
+![Image](https://github.com/user-attachments/assets/9173a5d3-8f41-4a88-bedb-8855ab5f18ac)
+
 
 
 
