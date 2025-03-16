@@ -46,6 +46,10 @@
 
 ### [ Architecture ]
 
+<img width="376" alt="Image" src="https://github.com/user-attachments/assets/f82475ab-0efb-4cb5-85d5-4c709bf96490" />
+
+
+
 ### **❖ StatefulSet 기반 MongoDB ReplicaSet 구성**
 
 ## **📌 PV (Persistent Volume) 설정**
