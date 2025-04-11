@@ -45,6 +45,10 @@
 
 [ MongoDB 이중화 WorkBook 보기 ](MongoDBCluster/README.md)
 
+
+
+
+
 ### 2. MongoDB Data구조
 
-![Image](https://github.com/user-attachments/assets/63751f42-0232-41a8-a620-dbaf948482dc)
+![Image](https://github.com/user-attachments/assets/37f0a4d7-bf5c-4fad-a82a-cc47c3f827d9)
