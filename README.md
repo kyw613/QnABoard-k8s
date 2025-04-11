@@ -49,6 +49,41 @@
 
 
 
+
+
+
+
+
+
 ### 2. MongoDB Data구조
 
-![Image](https://github.com/user-attachments/assets/37f0a4d7-bf5c-4fad-a82a-cc47c3f827d9)
+| {
+  "date": "2024-05-05",
+  "questions": [
+    {
+      "question_id":"q1",
+      "title": "Django와 MongoDB 연동 방법은?",
+      "author_nickname": "developer123",
+      “images”: base64
+      "created_at": "2024-05-05T10:00:00Z",
+      "upvotes": 5,
+      "answers": [
+        {
+          "answer_id": "a1",
+          "author_nickname": "expert456",
+          "created_at": "2024-05-05T11:00:00Z",
+          "content": " mongoengine 쓰면 돼요",
+          "upvotes": 10
+        },
+        {
+          "answer_id": "a2",
+          "author_nickname": "newbie789",
+          "created_at": "2024-05-05T12:00:00Z",
+          "content": "djongo로 ORM처럼 연동할 수 있어",
+          "upvotes": 3
+        }
+      ]
+    }
+  ]
+} |
+| --- |
