@@ -26,7 +26,7 @@
 - Nginx와 ingress를 활용한 기본 구조 구성 및 https 인증서 설정
 - MongoDB의 고가용성 확보를 위한 Replica Set 구성 및 StatefulSet 활용
 - EFK Stack(Elasticsearch, Fluentbit, Kibana)을 통한 로그 수집 및 시각화
-- EKF(Elastic, Kibana, Fluentbit) 및 HPA(Horizontal Pod Autoscaler)를 통해 모니터링 후 자동 확장 설정
+- metrics-server로 리소스 모니터링 후 HPA(Horizontal Pod Autoscaler)를 통해 자동 확장 설정
 - Network Policy, 리소스 할당(ResourceQuota), 그리고 LimitRange를 통한 보안과 자원 관리 강화
 
 ## **기술 스택:**
@@ -45,4 +45,6 @@
 
 [ MongoDB 이중화 WorkBook 보기 ](MongoDBCluster/README.md)
 
+### 2. MongoDB Data구조
 
+![Image](https://github.com/user-attachments/assets/63751f42-0232-41a8-a620-dbaf948482dc)
