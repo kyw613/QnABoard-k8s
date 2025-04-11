@@ -57,14 +57,15 @@
 
 ### 2. MongoDB Data구조
 
-| {
+```json
+{
   "date": "2024-05-05",
   "questions": [
     {
-      "question_id":"q1",
+      "question_id": "q1",
       "title": "Django와 MongoDB 연동 방법은?",
       "author_nickname": "developer123",
-      “images”: base64
+      "image": "base64",
       "created_at": "2024-05-05T10:00:00Z",
       "upvotes": 5,
       "answers": [
@@ -72,7 +73,7 @@
           "answer_id": "a1",
           "author_nickname": "expert456",
           "created_at": "2024-05-05T11:00:00Z",
-          "content": " mongoengine 쓰면 돼요",
+          "content": "mongoengine 쓰면 돼요",
           "upvotes": 10
         },
         {
@@ -85,5 +86,5 @@
       ]
     }
   ]
-} |
-| --- |
+}
+```
