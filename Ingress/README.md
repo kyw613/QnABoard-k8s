@@ -2,10 +2,21 @@
 
 ```jsx
 
-student@k8s-master:~/Homework$ openssl genrsa -out server.key 2048
-student@k8s-master:~/Homework$ openssl req -new -x509 -key server.key -out server.cert -days 360 -subj "/CN=k8s.frontback" -addext "subjectAltName = DNS:k8s.frontback"
-student@k8s-master:~/Homework$ kubectl create secret tls k8s-front-back-secret --cert=server.cert --key=server.key
+# 1. 개인 키 생성 (2048bit)
+openssl genrsa -out server.key 2048
+
+# 2. 인증서 생성
+openssl req -new -x509 -key server.key -out server.cert -days 360 \
+  -subj "/CN=k8s.frontback" \
+  -addext "subjectAltName = DNS:k8s.frontback"
+
+# 3. Kubernetes Secret 생성
+kubectl create secret tls k8s-front-back-secret \
+  --cert=server.cert \
+  --key=server.key
 secret/k8s-front-back-secret created
+
+# Secret 목록 확인
 student@k8s-master:~/Homework$ kubectl get secrets
 NAME                    TYPE                DATA   AGE
 dshub-https             Opaque              2      7d14h
