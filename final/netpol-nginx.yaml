@@ -1,33 +1,36 @@
-##nginx-netpol.yaml
+## nginx-netpol.yaml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: nginx-network-policy
-  namespace: default
+  namespace: default  # default 네임스페이스에 존재하는 nginx Pod 대상
 spec:
   podSelector:
     matchLabels:
-      app: nginx
+      app: nginx  # app=nginx인 Pod에만 적용
+
   policyTypes:
   - Ingress
   - Egress
+
   ingress:
-  - from:
+  - from:                                   # 외부 클라이언트 또는 시스템 서비스 예외 허용
     - ipBlock:
-        cidr: 10.108.82.192/32  # tunl0
+        cidr: 10.108.82.192/32              # Calico의 tunl0 인터페이스 IP
     - namespaceSelector:
         matchLabels:
-          kubernetes.io/metadata.name: kube-system
+          kubernetes.io/metadata.name: kube-system  # DNS 등 시스템 서비스 통신 허용
     ports:
     - protocol: TCP
       port: 80
     - protocol: TCP
       port: 443
-  - from:
+
+  - from:                                   # frontend에서 nginx 접근 허용
     - namespaceSelector:
         matchLabels:
           kubernetes.io/metadata.name: frontend
-    - podSelector:         # 수신을 허용하는 Pod의 label 설정
+    - podSelector:
         matchLabels:
           app: frontend
     ports:
@@ -35,11 +38,12 @@ spec:
       port: 80
     - protocol: TCP
       port: 443
-  - from:
+
+  - from:                                   # default 내부 nginx 간 통신 허용
     - namespaceSelector:
         matchLabels:
           kubernetes.io/metadata.name: default
-    - podSelector:         # 수신을 허용하는 Pod의 label 설정
+    - podSelector:
         matchLabels:
           app: nginx
     ports:
@@ -47,11 +51,12 @@ spec:
       port: 80
     - protocol: TCP
       port: 443
-  - from:
+
+  - from:                                   # backend에서 nginx 접근 허용
     - namespaceSelector:
         matchLabels:
           kubernetes.io/metadata.name: backend
-    - podSelector:         # 수신을 허용하는 Pod의 label 설정
+    - podSelector:
         matchLabels:
           app: backend
     ports:
@@ -61,24 +66,24 @@ spec:
       port: 443
 
   egress:
-  - to:
+  - to:                                     # nginx에서 frontend 송신 허용
     - namespaceSelector:
         matchLabels:
           kubernetes.io/metadata.name: frontend
-    - podSelector:         # 수신을 허용하는 Pod의 label 설정
+    - podSelector:
         matchLabels:
           app: frontend
     ports:
     - protocol: TCP
       port: 3000
-  - to:
+
+  - to:                                     # nginx에서 backend 송신 허용
     - namespaceSelector:
         matchLabels:
           kubernetes.io/metadata.name: backend
-    - podSelector:         # 수신을 허용하는 Pod의 label 설정
+    - podSelector:
         matchLabels:
           app: backend
     ports:
     - protocol: TCP
       port: 8000
-
