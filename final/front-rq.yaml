@@ -6,5 +6,5 @@ metadata:
 spec:
   hard:
     pods: "10"
-    requests.cpu: "1000m"
-    requests.memory: 1Gi
+    requests.cpu: "1600m"    # 100m * 10 + 여유CPU
+    requests.memory: 1.6Gi   # 100Mi * 10 + 여유Memory
