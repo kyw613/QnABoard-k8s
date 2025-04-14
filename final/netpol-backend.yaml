@@ -5,49 +5,49 @@ metadata:
   name: backend-network-policy
   namespace: backend
 spec:
-  podSelector: #정책사용 pod
+  podSelector:   # 정책 적용 대상 Pod (app=backend)
     matchLabels:
       app: backend
   policyTypes:
   - Ingress
   - Egress
   ingress:
-  - from:
-    - namespaceSelector:     #ns to ns 간에 있는 Pod 트래픽 흐름 제어
+  - from:                    # default ns의 nginx ingress 허용
+    - namespaceSelector:
         matchLabels:
           kubernetes.io/metadata.name: default
-    - podSelector:         # 수신을 허용하는 Pod의 label 설정
+    - podSelector:
         matchLabels:
           app: nginx
     ports:
     - protocol: TCP
       port: 8000
-  - from:
-    - namespaceSelector:     #ns to ns 간에 있는 Pod 트래픽 흐름 제어
+  - from:                    # mongodb ns의 mongodb ingress 허용 
+    - namespaceSelector:    
         matchLabels:
           kubernetes.io/metadata.name: mongodb
-    - podSelector:         # 수신을 허용하는 Pod의 label 설정
+    - podSelector:
         matchLabels:
           app: mongodb
     ports:
     - protocol: TCP
       port: 27017
   egress:
-  - to:
-    - namespaceSelector:     #ns to ns 간에 있는 Pod 트래픽 흐름 제어
+  - to:                      # default ns의 8000 포트 egress 허용
+    - namespaceSelector:
         matchLabels:
           kubernetes.io/metadata.name: default
     ports:
     - protocol: TCP
       port: 8000
-  - to:
-    - namespaceSelector:     #ns to ns 간에 있는 Pod 트래픽 흐름 제어
+  - to:                      # mongodb ns의 27017 포트 egress 허용
+    - namespaceSelector:
         matchLabels:
           kubernetes.io/metadata.name: mongodb
     ports:
     - protocol: TCP
       port: 27017
-  - to:
+  - to:                      # DNS 등 kube-system 통신 허용
     - namespaceSelector:
         matchLabels:
           kubernetes.io/metadata.name: kube-system
